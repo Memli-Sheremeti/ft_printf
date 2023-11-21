@@ -6,7 +6,7 @@
 /*   By: mshereme <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 10:34:06 by mshereme          #+#    #+#             */
-/*   Updated: 2023/11/13 17:56:45 by mshereme         ###   ########.fr       */
+/*   Updated: 2023/11/21 09:28:53 by mshereme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,34 +32,25 @@ int	ft_print_str(char *str)
 	return (i);
 }
 
-
-int ft_calculs_hex(long long unsigned ptr, int len)
+int	ft_calculs_hex(uintptr_t ptr, int len)
 {
-    char    *base;
-
-    base = "0123456789abcdef";
-    if (ptr < 16)
-        return (len + ft_print_char(base[ptr]));
-    else
-    {
-        len += ft_calculs_hex(ptr / 16, len);
-        return (len + ft_calculs_hex(ptr % 16, len));
-    }
+	if (ptr < 16)
+		return (len + ft_print_char(BASEL[ptr]));
+	else
+	{
+		len = ft_calculs_hex(ptr / 16, len);
+		return (ft_calculs_hex(ptr % 16, len));
+	}
 }
 
-int	ft_print_ptr(long long unsigned ptr)
+int	ft_print_ptr(uintptr_t ptr)
 {
-    int     len;
+	int	len;
 
-    len = 0;
+	len = 0;
 	if (!ptr)
-		return (write(1,"(nil)", 5));
-    len += write(1, "0x", 2);
-    if (ptr < 16)
-        return (len + ft_print_char(BASEL[ptr]));
-    else
-    { 
-        len = ft_print_ptr(ptr / 16);
-        return (len + ft_print_ptr(ptr % 16));
-    } 
+		return (write(1, "(nil)", 5));
+	len += write(1, "0x", 2);
+	len = ft_calculs_hex(ptr, len);
+	return (len);
 }

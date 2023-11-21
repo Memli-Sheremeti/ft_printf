@@ -6,7 +6,7 @@
 #    By: mshereme <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/12 09:45:45 by mshereme          #+#    #+#              #
-#    Updated: 2023/11/13 12:52:55 by mshereme         ###   ########.fr        #
+#    Updated: 2023/11/21 09:28:30 by mshereme         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,16 +26,13 @@ FLAG = -Wall -Wextra -Werror
 
 AR = ar -rc
 
-LIB = ranlib
-
 all : ${NAME}
 
-.c.o : 
+.c.o :
 	${CC} ${FLAG} -c -I ${HEAD} $< -o ${<:.c=.o}
 
 ${NAME} : ${OBJ}
 	${AR} ${NAME} ${OBJ}
-	${LIB} ${NAME}
 
 clean : 
 	${RM} ${OBJ}

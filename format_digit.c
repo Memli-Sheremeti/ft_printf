@@ -6,7 +6,7 @@
 /*   By: mshereme <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 10:50:33 by mshereme          #+#    #+#             */
-/*   Updated: 2023/11/13 17:54:42 by mshereme         ###   ########.fr       */
+/*   Updated: 2023/11/21 09:29:06 by mshereme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,13 @@ int	ft_print_num(long nb)
 
 int	ft_print_hex(unsigned int nb, char c)
 {
-    int     count;
+	int	count;
 
 	count = 0;
 	if (nb < 16 && c == 'x')
-		return(ft_print_char(BASEL[nb]));
-    else if (nb < 16 && c == 'X')
-        return(ft_print_char(BASEU[nb]));
+		return (ft_print_char(BASEL[nb]));
+	else if (nb < 16 && c == 'X')
+		return (ft_print_char(BASEU[nb]));
 	else
 	{
 		count = ft_print_hex(nb / 16, c);
